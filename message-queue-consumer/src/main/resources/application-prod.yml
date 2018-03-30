@@ -1,0 +1,15 @@
+spring:
+  cloud:
+    stream:
+      kafka:
+        binder:
+          brokers: SASL_SSL://kafka-ons-internet.aliyun.com:8080
+          configuration:
+            security:
+              protocol: SASL_SSL
+            sasl:
+              mechanism: ONS
+            ssl:
+              truststore:
+                location: /Users/dengfengqi/kafka.client.truststore.jks
+                password: KafkaOnsClient

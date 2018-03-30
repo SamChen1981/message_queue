@@ -1,0 +1,27 @@
+CREATE TABLE `Person` (
+  `name` varchar(2000) DEFAULT NULL,
+  `age` int(20) DEFAULT NULL,
+  `time` bigint(20) DEFAULT NULL,
+  `id` int(20) NOT NULL AUTO_INCREMENT,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=1142 DEFAULT CHARSET=utf8
+
+CREATE TABLE `MessageReceiveTracker` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `storedEventId` int(11) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=5541 DEFAULT CHARSET=utf8
+
+CREATE TABLE `MessageSendTracker` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `eventId` int(11) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=5586 DEFAULT CHARSET=utf8
+
+CREATE TABLE `StoredEvent` (
+  `eventId` int(11) NOT NULL AUTO_INCREMENT,
+  `eventBody` blob NOT NULL,
+  `occurredOn` bigint(20) NOT NULL,
+  `typeName` varchar(100) NOT NULL,
+  PRIMARY KEY (`eventId`)
+) ENGINE=InnoDB AUTO_INCREMENT=69760 DEFAULT CHARSET=utf8

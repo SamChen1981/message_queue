@@ -1,0 +1,62 @@
+server:
+  port: 8081
+
+spring:
+  profiles:
+    active: prod
+  cloud:
+    stream:
+      kafka:
+        binder:
+          headers: type
+      bindings:
+        output:
+          destination: kyee_test_3
+          contentType: application/json
+          producer:
+            headerMode: embeddedHeaders
+            partitionCount: 10
+            #partitionKeyExtractorClass: com.example.messagequeueproducer.demo.key.expression.MyKeyExpression
+  jpa:
+    hibernate:
+      naming:
+        physical-strategy: org.hibernate.boot.model.naming.PhysicalNamingStrategyStandardImpl
+      ddl-auto: none
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.MySQL5Dialect
+    show-sql: true
+  datasource:
+    url: jdbc:mysql://localhost:3306/message?useUnicode=true&characterEncoding=utf8&allowMultiQueries=true
+    username: root
+    password: admin
+    tomcat:
+      validation-query: "select 1"
+#
+lts:
+  jobclient:
+    cluster-name: ky-edu
+    registry-address: zookeeper://127.0.0.1:2181
+    node-group: nec-server
+    use-retry-client: true
+    configs:
+      job:
+        fail:
+          store: mapdb
+  tasktracker:
+    cluster-name: ky-edu
+    registry-address: zookeeper://127.0.0.1:2181
+    node-group: nec-server
+    configs:
+      job:
+        fail:
+          store: mapdb
+    dispatch-runner:
+      enable: true
+      shardValue: type
+  task-target-group:
+    nec-server: nec-server
+    nec-msg: nec-msg
+
+message-queue:
+  task-id: message-queue
